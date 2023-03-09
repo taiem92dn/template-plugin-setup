@@ -1,4 +1,4 @@
-package com.github.taiem92dn.templatepluginsetup
+package com.github.taiem92dn
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

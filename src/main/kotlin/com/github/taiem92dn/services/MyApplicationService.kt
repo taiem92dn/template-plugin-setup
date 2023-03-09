@@ -1,6 +1,6 @@
-package com.github.taiem92dn.templatepluginsetup.services
+package com.github.taiem92dn.services
 
-import com.github.taiem92dn.templatepluginsetup.MyBundle
+import com.github.taiem92dn.MyBundle
 
 class MyApplicationService {
 

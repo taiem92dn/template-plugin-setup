@@ -1,7 +1,7 @@
-package com.github.taiem92dn.templatepluginsetup.services
+package com.github.taiem92dn.services
 
+import com.github.taiem92dn.MyBundle
 import com.intellij.openapi.project.Project
-import com.github.taiem92dn.templatepluginsetup.MyBundle
 
 class MyProjectService(project: Project) {
 
