@@ -1,4 +1,4 @@
-package com.github.taiem92dn.templatepluginsetup
+package com.github.taiem92dn.templatepluginsetup.activity
 
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
@@ -7,7 +7,7 @@ import com.android.tools.idea.wizard.template.impl.activities.common.generateMan
 import someActivity
 import someActivityLayout
 
-fun RecipeExecutor.mviSetup(
+fun RecipeExecutor.createActivitySetup(
     moduleData: ModuleTemplateData,
     packageName: String,
     entityName: String,

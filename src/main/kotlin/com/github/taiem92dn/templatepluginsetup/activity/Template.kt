@@ -1,10 +1,10 @@
-package com.github.taiem92dn.templatepluginsetup
+package com.github.taiem92dn.templatepluginsetup.activity
 
 import com.android.tools.idea.wizard.template.*
 
 private const val MIN_SDK = 16
 
-val mviSetupTemplate
+val createActivity
     get() = template {
 //        revision = 2
         name = "MY Setup with Activity"
@@ -39,7 +39,7 @@ val mviSetupTemplate
         )
 
         recipe = { data: TemplateData ->
-            mviSetup(
+            createActivitySetup(
                 data as ModuleTemplateData,
                 packageNameParam.value,
                 entityName.value,
