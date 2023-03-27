@@ -9,6 +9,7 @@ fun RecipeExecutor.mvvmTemplateSetup(
     packageName: String,
     addNetwork: Boolean,
     overWriteBuildGradle: Boolean,
+    baseUrl: String,
     entityName: String,
 ) {
     val (projectData, srcOut, resOut) = moduleData
@@ -58,6 +59,19 @@ fun RecipeExecutor.mvvmTemplateSetup(
         to = manifestOut.resolve("AndroidManifest.xml")
     )
 
+    mergeXml(
+        source = addDimensXml(),
+        to = resOut.resolve("values/dimens.xml")
+    )
+
+    resOut.resolve("layout/activity_main.xml").writeText(
+        activityMainFileXml()
+    )
+
+    srcOut.resolve("MainActivity.kt").writeText(
+        mainActivityFile(packageName)
+    )
+
     if (overWriteBuildGradle) {
         // overwrite build.gradle file of project
         moduleData.rootDir.resolve("../build.gradle").writeText(
@@ -92,7 +106,7 @@ fun RecipeExecutor.mvvmTemplateSetup(
         }
 
         save(
-            networkModuleFile(packageName, projectData),
+            networkModuleFile(packageName, baseUrl, projectData),
             srcOut.resolve("di/module/NetworkModule.kt")
         )
 

@@ -89,12 +89,12 @@ ext {
     // di
     hilt_ex_version = "1.0.0-alpha03"
 
-    coroutines_android_version = '1.3.2'
+    coroutines_android_version = '1.6.4'
 
     ${if (isAddNetwork) { """
     // network
     retrofit_version = "2.9.0"
-    okhttp_version = "4.9.1"       
+    okhttp_version = "4.10.0"       
     """
         }
         else ""
@@ -106,7 +106,7 @@ ext {
     timber_version = "5.0.1"
     ${if (isAddNetwork) { """
     // stetho
-    stetho_version = "1.5.1"
+    stetho_version = "1.6.0"
     """
         }
         else ""
@@ -158,7 +158,7 @@ dependencies {
 
     // ui
 //    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.recyclerview:recyclerview:1.3.0"
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation "com.google.android.material:material:${'$'}material_version"
 

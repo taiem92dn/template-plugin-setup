@@ -32,6 +32,13 @@ val mvvmSetupTemplate
             help = "If true, add network package and related class to base package"
         }
 
+        val baseUrl = stringParameter {
+            name = "Base URL use for network"
+            default = ""
+            help = "This is Base URL"
+            constraints = listOf(Constraint.NONEMPTY)
+        }
+
         val overWriteBuildGradle = booleanParameter {
             name = "Overwrite build gradle files"
             default = true
@@ -43,7 +50,8 @@ val mvvmSetupTemplate
             TextFieldWidget(entityName),
             PackageNameWidget(basePackageName),
             CheckBoxWidget(addNetwork),
-            CheckBoxWidget(overWriteBuildGradle)
+            CheckBoxWidget(overWriteBuildGradle),
+            TextFieldWidget(baseUrl),
         )
 
         recipe = { data: TemplateData ->
@@ -52,6 +60,7 @@ val mvvmSetupTemplate
                 basePackageName.value,
                 addNetwork.value,
                 overWriteBuildGradle.value,
+                baseUrl.value,
                 entityName.value,
             )
         }
