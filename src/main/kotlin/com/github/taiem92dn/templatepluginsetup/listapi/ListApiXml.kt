@@ -215,6 +215,7 @@ fun addStringsXml(
     <string name="unable_to_get_data">Unable to get data</string>
     
     <string name="${itemName.lowercase()}list_fragment_label">$itemName List Fragment</string>
+    <string name="no_results">No Results</string>
 </resources> 
 """.trimIndent()
 

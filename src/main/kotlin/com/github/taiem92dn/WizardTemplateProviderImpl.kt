@@ -5,6 +5,7 @@ import com.android.tools.idea.wizard.template.WizardTemplateProvider
 import com.github.taiem92dn.templatepluginsetup.activity.createActivity
 import com.github.taiem92dn.templatepluginsetup.listapi.listApiTemplate
 import com.github.taiem92dn.templatepluginsetup.mvvm.mvvmSetupTemplate
+import com.github.taiem92dn.templatepluginsetup.paging.pagingTemplate
 
 class WizardTemplateProviderImpl  : WizardTemplateProvider() {
 
@@ -12,6 +13,7 @@ class WizardTemplateProviderImpl  : WizardTemplateProvider() {
         listOf(
             createActivity,
             mvvmSetupTemplate,
-            listApiTemplate
+            listApiTemplate,
+            pagingTemplate
         )
 }

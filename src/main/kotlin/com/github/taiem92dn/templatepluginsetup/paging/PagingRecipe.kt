@@ -1,11 +1,18 @@
-package com.github.taiem92dn.templatepluginsetup.listapi
+package com.github.taiem92dn.templatepluginsetup.paging
 
 import com.android.tools.idea.wizard.template.ModuleTemplateData
 import com.android.tools.idea.wizard.template.RecipeExecutor
 import com.android.tools.idea.wizard.template.impl.activities.common.addAllKotlinDependencies
-import java.io.File
+import com.github.taiem92dn.templatepluginsetup.listapi.addListIntoNavigationXml
+import com.github.taiem92dn.templatepluginsetup.listapi.addStringsXml
+import com.github.taiem92dn.templatepluginsetup.listapi.contentApiXml
+import com.github.taiem92dn.templatepluginsetup.listapi.itemListXml
+import com.github.taiem92dn.templatepluginsetup.listapi.itemModelFile
+import com.github.taiem92dn.templatepluginsetup.listapi.listFragmentXml
+import com.github.taiem92dn.templatepluginsetup.listapi.listResponseFile
+import com.github.taiem92dn.templatepluginsetup.listapi.updateNetworkModuleFile
 
-fun RecipeExecutor.listApiRecipe(
+fun RecipeExecutor.pagingRecipe(
     moduleData: ModuleTemplateData,
     packageName: String,
     itemName: String,
@@ -15,6 +22,7 @@ fun RecipeExecutor.listApiRecipe(
     addContentApiXml: Boolean,
     addRetrofitService: Boolean,
     addListResponseFile: Boolean,
+    addPagingCommonFile: Boolean,
     apiPath: String,
 ) {
     val (projectData, srcOut, resOut) = moduleData
@@ -117,24 +125,29 @@ fun RecipeExecutor.listApiRecipe(
         source = addListIntoNavigationXml(packageName, itemName),
         to = resOut.resolve("navigation/nav_graph.xml")
     )
-}
+    // ========== Paging part ===========
 
-fun updateNetworkModuleFile(packageName: String, itemName: String, srcOut: File) {
-    // add a few code lines in NetworkModule.kt
-    val newContent = srcOut.resolve("di/module/NetworkModule.kt")
-        .readText()
-        .replace("NetworkModule {",
-            "NetworkModule  {${addDependenciesInNetworkModule(packageName, itemName)}"
-        )
-        .replace("import $packageName.network.INetworkCheckService\n" +
-                "import $packageName.util.Utils",
-            """import $packageName.network.INetworkCheckService
-import $packageName.data.Remote${itemName}DataSource
-import $packageName.data.${itemName}DataSource
-import $packageName.network.${itemName}Service
-import $packageName.util.Utils"""
+    addDependency("androidx.paging:paging-runtime-ktx:3.1.1")
+
+    save(
+        pagingSourceFile(packageName, itemName),
+        srcOut.resolve("data/${itemName}PagingSource.kt")
+    )
+
+    if (addPagingCommonFile) {
+        save(
+            itemLoadStateAdapter(packageName, itemName),
+            srcOut.resolve("ui/${itemName}list/adapter/ItemsLoadStateAdapter.kt")
         )
 
+        save(
+            itemLoadStateViewHolder(packageName, itemName),
+            srcOut.resolve("ui/${itemName}list/adapter/ItemsLoadStateViewHolder.kt")
+        )
 
-    srcOut.resolve("di/module/NetworkModule.kt").writeText(newContent)
+        save(
+            listLoadStateFooterViewXml(packageName, itemName),
+            resOut.resolve("layout/list_load_state_footer_view_item.xml")
+        )
+    }
 }

@@ -107,7 +107,7 @@ class ${itemName}Repository @Inject constructor(
 fun recyclerViewAdapterFile(
     packageName: String,
     itemName: String,
-) = """package $packageName.ui.${itemName.lowercaseFirstLetter()}list.adapter
+) = """package $packageName.ui.${itemName.lowercase()}list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -350,7 +350,7 @@ open class ${itemName}ListFragment : Fragment() {
 fun viewModelList(
     packageName: String,
     itemName: String,
-) = """package $packageName.ui.${itemName.lowercaseFirstLetter()}list
+) = """package $packageName.ui.${itemName.lowercase()}list
 
 import android.util.Log
 import androidx.lifecycle.LiveData
