@@ -6,6 +6,7 @@ import com.github.taiem92dn.templatepluginsetup.activity.createActivity
 import com.github.taiem92dn.templatepluginsetup.listapi.listApiTemplate
 import com.github.taiem92dn.templatepluginsetup.mvvm.mvvmSetupTemplate
 import com.github.taiem92dn.templatepluginsetup.paging.pagingTemplate
+import com.github.taiem92dn.templatepluginsetup.pagingdb.pagingDatabaseTemplate
 
 class WizardTemplateProviderImpl  : WizardTemplateProvider() {
 
@@ -14,6 +15,7 @@ class WizardTemplateProviderImpl  : WizardTemplateProvider() {
             createActivity,
             mvvmSetupTemplate,
             listApiTemplate,
-            pagingTemplate
+            pagingTemplate,
+            pagingDatabaseTemplate
         )
 }

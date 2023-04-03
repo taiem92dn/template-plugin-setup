@@ -490,24 +490,6 @@ class ${itemName}ListViewModel @Inject constructor(
 }
 """.trimIndent()
 
-fun addDependenciesInNetworkModule(
-    packageName: String,
-    itemName: String,
-) = """
-    
-    @Provides
-    @Singleton
-    fun provide${itemName}DataSource(${itemName.lowercaseFirstLetter()}Service: ${itemName}Service): ${itemName}DataSource {
-        return Remote${itemName}DataSource(${itemName.lowercaseFirstLetter()}Service)
-    }
-
-    @Provides
-    @Singleton
-    fun provide${itemName}Service(@Named("non_auth_retrofit") retrofit: Retrofit): ${itemName}Service {
-        return retrofit.create(${itemName}Service::class.java)
-    }
-"""
-
 fun itemLoadStateAdapter(
     packageName: String,
     itemName: String
